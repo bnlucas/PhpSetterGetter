@@ -2,20 +2,27 @@ import re
 
 import sublime, sublime_plugin
 
+def getLastSelection(view):
+	position = 0
+	selected = []
+	sels 	 = view.sel()
+	for sel in sels:
+		if sel.end() > position:
+			position = sel.end()
+			selected.append(view.substr(sel))
+
+	return [position, selected]
+
+
 class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 
 	def run(self, edit):
 
-		position	= 0
-		selected	= []
+		selection	= getLastSelection(self.view)
+		position	= selection[0]
+		selected	= selection[1]
 		properties	= []
 		output		= []
-
-		sels = self.view.sel()
-		for sel in sels:
-			if sel.end > position:
-				position = sel.end()
-				selected.append(self.view.substr(sel))
 
 		for line in selected:
 			pattern = re.compile("=")
@@ -48,13 +55,8 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 		try:
 			edit = self.view.begin_edit("php_setter_getter")
 			self.view.insert(edit, position, "\n".join(output))
-			last = 0
-			sels = self.view.sel()
-			for sel in sels:
-				if sel.end > last:
-					last = sel.end()
-			print(last)
+			final = getLastSelection(self.view)
 			self.view.sel().clear()
-			self.view.sel().add(sublime.Region(position, last))
+			self.view.sel().add(sublime.Region(position, final[0]))
 		finally:
 			self.view.end_edit(edit)

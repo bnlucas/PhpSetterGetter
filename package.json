@@ -6,7 +6,7 @@
             "description": "Inserts get/set methods for class properties.",
             "author": "Nathan Lucas",
             "homepage": "https://github.com/bnlucas/PhpSetterGetter",
-            "last_modified": "2012-11-14 00:44:14",
+            "last_modified": "2012-11-14 01:03:42",
             "platforms": {
                 "*": [
                     {
