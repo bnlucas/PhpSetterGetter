@@ -3,14 +3,14 @@
     "packages": [
         {
             "name": "PhpSetterGetter",
-            "description": "Inserts get/set methods for class properties.",
+            "description": "Inserts get/set methods for selected class properties.",
             "author": "Nathan Lucas",
             "homepage": "https://github.com/bnlucas/PhpSetterGetter",
-            "last_modified": "2012-11-14 01:03:42",
+            "last_modified": "2012-11-14 01:16:06",
             "platforms": {
                 "*": [
                     {
-                        "version": "1.0.0",
+                        "version": "1.2.0",
                         "url": "https://github.com/bnlucas/PhpSetterGetter/archive/master.zip"
                     }
                 ]
