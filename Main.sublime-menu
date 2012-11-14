@@ -1,0 +1,14 @@
+[
+{        
+    "id": "tools", 
+    "children":
+    [{
+        "caption": "PHP",
+        "id": "php_setter_getter",
+        "children":
+        [
+            { "command": "php_setter_getter" }
+        ]
+    }]
+}
+]

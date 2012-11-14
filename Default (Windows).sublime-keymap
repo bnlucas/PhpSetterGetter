@@ -1,0 +1,5 @@
+[
+    {
+        "keys": ["ctrl+k", "ctrl+p"], "command": "php_setter_getter"
+    }
+]
