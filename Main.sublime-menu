@@ -7,7 +7,7 @@
 				"id": "php",
 				"caption": "PHP",
 				"children": [
-					{ "command": "php_setter_getter" }
+					{ "command": "php_setter_getter", "caption": "PHP Setter Getter" }
 				]
 			}
 		]
