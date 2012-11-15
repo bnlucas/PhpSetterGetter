@@ -28,8 +28,8 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 
 		# Pull last cursor position and a list of selected characters.
 		selections	= getSelections(self.view)
-		position	= selections["position"]
-		selected	= selections["selections"]
+		position	= selections['position']
+		selected	= selections['selections']
 
 		properties	= []
 		output		= []
