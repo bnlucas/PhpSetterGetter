@@ -10,7 +10,7 @@
             "platforms": {
                 "*": [
                     {
-                        "version": "1.2.0",
+                        "version": "1.4.0",
                         "url": "https://github.com/bnlucas/PhpSetterGetter/archive/master.zip"
                     }
                 ]
