@@ -46,7 +46,7 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 				# line is not a class property.
 				if len(segments) != 2 or segments[1][0] != "$":
 					sublime.error_message("Please check that your properties "
-						+ "are selected correctly. [modifier $property]")
+						+ "are selected correctly.")
 					return
 				properties.append(segments[1])
 
@@ -54,7 +54,7 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 			# Get lowercase and uppercase versions of the property name
 			# for set/get setProperty($property) / getProperty()
 			lowercase = prop.lstrip("$").rstrip(";")
-			uppercase = lowercase[0].capitalize() + lowercase[1:len(lowercase)]
+			uppercase = lowercase[0].capitalize() + lowercase[1:]
 
 			# Method templates for set and get.
 			template = """
