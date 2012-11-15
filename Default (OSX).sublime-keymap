@@ -1,5 +1,5 @@
 [
-    {
-        "keys": ["super+k", "super+p"], "command": "php_setter_getter"
-    }
+	{
+		"keys": ["super+k", "super+p"], "command": "php_setter_getter"
+	}
 ]

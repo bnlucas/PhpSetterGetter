@@ -1,20 +1,20 @@
 {
-    "schema_version": "1.2",
-    "packages": [
-        {
-            "name": "PhpSetterGetter",
-            "description": "Inserts get/set methods for selected class properties.",
-            "author": "Nathan Lucas",
-            "homepage": "https://github.com/bnlucas/PhpSetterGetter",
-            "last_modified": "2012-11-14 18:09:41",
-            "platforms": {
-                "*": [
-                    {
-                        "version": "1.4.0",
-                        "url": "https://github.com/bnlucas/PhpSetterGetter/archive/master.zip"
-                    }
-                ]
-            }
-        }
-    ]
+	"schema_version": "1.2",
+	"packages": [
+		{
+			"name": "PhpSetterGetter",
+			"description": "Inserts get/set methods for selected class properties.",
+			"author": "Nathan Lucas",
+			"homepage": "https://github.com/bnlucas/PhpSetterGetter",
+			"last_modified": "2012-11-15 08:05:07",
+			"platforms": {
+				"*": [
+					{
+						"version": "1.4.0",
+						"url": "https://github.com/bnlucas/PhpSetterGetter/archive/master.zip"
+					}
+				]
+			}
+		}
+	]
 }
