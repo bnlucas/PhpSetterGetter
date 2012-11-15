@@ -7,8 +7,7 @@ import sublime, sublime_plugin
 def getSelections(view):
 	position = 0
 	selected = []
-	sels 	 = view.sel()
-	for sel in sels:
+	for sel in view.sel():
 		if sel.end() > position:
 			position = sel.end()
 			line     = view.substr(sel)
@@ -38,8 +37,7 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 		for line in selected:
 			# If property has a defined value, split it off.
 			if "=" in line:
-				line = line.split("=");
-				line = line[0]
+				line = line.split("=")[0]
 			line = line.replace("\t", "").strip()
 			if len(line) > 0 and line[0] != "@":
 				segments = line.split()
