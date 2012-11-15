@@ -4,16 +4,22 @@ import sublime, sublime_plugin
 
 # Cycle through all cursor positions and place the selected text into an
 # array.
-def getLastSelection(view):
+def getSelections(view):
 	position = 0
 	selected = []
 	sels 	 = view.sel()
 	for sel in sels:
 		if sel.end() > position:
 			position = sel.end()
-			selected.append(view.substr(sel))
+			line     = view.substr(sel)
+			if "\r\n" in line:
+				selected.extend(line.split("\r\n"))
+			elif "\n" in line:
+				selected.extend(line.split("\n"))
+			else:
+				selected.append(line)
 
-	return [position, selected]
+	return {"position": position, "selections": selected}
 
 # PhpSetterGetter base method. This was based off Enrique Ramirez's
 # JavaSetterGetter @ https://github.com/enriquein/JavaSetterGetter
@@ -22,18 +28,17 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 
 		# Pull last cursor position and a list of selected characters.
-		selection	= getLastSelection(self.view)
-		position	= selection[0]
-		selected	= selection[1]
+		selections	= getSelections(self.view)
+		position	= selections["position"]
+		selected	= selections["selections"]
 
 		properties	= []
 		output		= []
 
 		for line in selected:
 			# If property has a defined value, split it off.
-			pattern = re.compile("=")
-			if pattern.search(line):
-				line = line.split(" =");
+			if "=" in line:
+				line = line.split("=");
 				line = line[0]
 			line = line.replace("\t", "").strip()
 			if len(line) > 0 and line[0] != "@":
@@ -66,13 +71,14 @@ class PhpSetterGetterCommand(sublime_plugin.TextCommand):
 			output.append(template.format(uppercase, lowercase))
 
 		try:
+			# Begin edit.
 			edit = self.view.begin_edit("php_setter_getter")
-			self.view.insert(edit, position, "\n".join(output))
+			insert = self.view.insert(edit, position, "\n".join(output))
 
-			# Get final cursor position after methods have been inserted
-			# and select that block of text.
-			final = getLastSelection(self.view)
+			# Clear text selections in editor and selected generated
+			# set/get methods.
 			self.view.sel().clear()
-			self.view.sel().add(sublime.Region(position, final[0]))
+			self.view.sel().add(sublime.Region(position, (position + insert)))
 		finally:
+			# End edit.
 			self.view.end_edit(edit)
